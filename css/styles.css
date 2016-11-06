@@ -1,128 +1,4 @@
-.navbar-brand {
-  position: relative;
-  z-index: 2; }
-
-.navbar-nav.navbar-right .btn {
-  position: relative;
-  z-index: 2;
-  padding: 4px 20px;
-  margin: 10px auto; }
-
-.navbar .navbar-collapse {
-  position: relative; }
-
-.navbar .nav-collapse {
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: 0;
-  padding-right: 120px;
-  padding-left: 80px;
-  width: 100%; }
-
-.navbar.navbar-default .nav-collapse {
-  background-color: #f8f8f8; }
-
-.navbar.navbar-inverse .nav-collapse {
-  background-color: #222; }
-
-.navbar .nav-collapse .navbar-form {
-  border-width: 0;
-  box-shadow: none; }
-
-.nav-collapse > li {
-  float: right; }
-
-.btn.btn-circle {
-  border-radius: 50px; }
-
-.btn.btn-outline {
-  background-color: transparent; }
-
-@media screen and (max-width: 767px) {
-  .navbar .navbar-collapse .navbar-right > li:last-child {
-    padding-left: 15px;
-    padding-right: 15px; }
-
-  .navbar .nav-collapse {
-    margin: 7.5px auto;
-    padding: 0; }
-
-  .navbar .nav-collapse .navbar-form {
-    margin: 0; }
-
-  .nav-collapse > li {
-    float: none; } }
-nav.navbar.navbar-default {
-  background: #6389a8;
-  border-color: #6389a8;
-  margin-bottom: 0px; }
-
-.navbar-default .navbar-nav > li > a {
-  color: #fff; }
-
-.chat {
-  list-style: none;
-  margin: 0;
-  padding: 0; }
-
-.chat li {
-  margin-bottom: 10px;
-  padding-bottom: 5px;
-  border-bottom: 1px dotted #B3A9A9; }
-
-.chat li.right .chat-body {
-  margin-right: 60px; }
-
-.chat li .chat-body p {
-  margin: 0; }
-
-.panel-primary > .panel-heading {
-  color: #fff;
-  background-color: #fff;
-  border-color: #fff; }
-
-.navbar-nav > li::before {
-  content: '|';
-  position: absolute;
-  color: #fff;
-  top: 16px; }
-
-.navbar-nav > li:first-child::before {
-  content: ''; }
-
-.panel .slidedown .glyphicon, .chat .glyphicon {
-  margin-right: 5px; }
-
-#imgLogo,
-#txtInput,
-#userName,
-#btnClear,
-#btnTheme {
-  height: 50px;
-  width: 100%; }
-
-nav div div.col-md-1,
-nav div div.col-md-2 {
-  padding-left: .25em;
-  padding-right: .25em; }
-
-.checkBoxs {
-  display: inline-block; }
-
-#messages {
-  height: 450px;
-  overflow-y: auto; }
-
-.embiggin {
-  font-size: 2em; }
-
-.btn-embiggin {
-  font-size: 1.25em; }
-
+/*  GENERAL  ************************************/
 body {
   height: 90vh;
   background-image: url("http://s3.amazonaws.com/spoonflower/public/design_thumbnails/0076/0696/rrammend_8_inch_mirror.png");
@@ -131,26 +7,70 @@ body {
   background-color: rgba(0, 0, 0, 0.8);
   background-blend-mode: difference; }
 
-#navMain {
-  height: 20%;
-  margin: 0; }
+li {
+  list-style: none;
+  padding: 1em;
+  margin: .25em;
+  border-radius: .25em;
+  box-shadow: 0px 2px 3px rgba(21, 21, 41, 0.7); }
 
-#footerMain {
-  width: 100%;
-  height: 6vh;
+footer span {
+  margin: 0 1em; }
+
+header nav {
+  height: 70px;
   margin: 0;
-  text-align: center; }
+  padding-top: 10px; }
 
-#divMain {
-  height: 100%;
-  border: 3px inset rgba(50, 50, 50, 0.8);
-  box-shadow: 0 5px 10px rgba(50, 40, 50, 0.9); }
-
+/*  CLASSES  ************************************/
 .container {
   margin-top: 1em; }
 
 .chat-img {
   padding-right: 1em;
   padding-left: 1em; }
+
+.embiggin {
+  font-size: 2em; }
+
+.btn-embiggin {
+  font-size: 1.25em; }
+
+/*  IDs  ****************************************/
+#imgLogo,
+#txtInput,
+#userName,
+#btnClear,
+#btnTheme {
+  height: 50px;
+  width: 100%;
+  vertical-align: middle; }
+
+#brandie {
+  padding: 0 1em; }
+
+#messages {
+  background: rgba(250, 250, 255, 0.9);
+  height: 79vh;
+  overflow-y: auto;
+  margin-top: 75px;
+  box-shadow: 0 3px 6px rgba(50, 40, 50, 0.8); }
+
+#navMain {
+  height: 10vh;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  position: fixed;
+  top: 0; }
+
+#footerMain {
+  width: 100%;
+  height: 5vh;
+  margin: 0;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  font-weight: bolder; }
 
 /*# sourceMappingURL=styles.css.map */

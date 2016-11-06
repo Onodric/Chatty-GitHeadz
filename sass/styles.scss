@@ -1,149 +1,41 @@
+/*  GENERAL  ************************************/
 
-.navbar-brand {
-    position: relative;
-    z-index: 2;
+body {
+  height:90vh;
+  background-image: url('http://s3.amazonaws.com/spoonflower/public/design_thumbnails/0076/0696/rrammend_8_inch_mirror.png');
+  background-size: 200%;
+  background-repeat: no-repeat;
+  background-color: rgba(0,0,0,.8);
+  background-blend-mode: difference;
 }
 
-.navbar-nav.navbar-right .btn {
-    position: relative;
-    z-index: 2;
-    padding: 4px 20px;
-    margin: 10px auto;
+li {
+  list-style: none;
+  padding: 1em;
+  margin: .25em;
+  border-radius: .25em;
+  box-shadow: 0px 2px 3px rgba(21,21,41,.7);
 }
 
-.navbar .navbar-collapse {
-    position: relative;
+footer span {
+  margin: 0 1em;
 }
 
-.navbar .nav-collapse {
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: 0;
-    padding-right: 120px;
-    padding-left: 80px;
-    width: 100%;
-}
-
-.navbar.navbar-default .nav-collapse {
-    background-color: #f8f8f8;
-}
-
-.navbar.navbar-inverse .nav-collapse {
-    background-color: #222;
-}
-
-.navbar .nav-collapse .navbar-form {
-    border-width: 0;
-    box-shadow: none;
-}
-
-.nav-collapse>li {
-    float: right;
-}
-
-.btn.btn-circle {
-    border-radius: 50px;
-}
-
-.btn.btn-outline {
-    background-color: transparent;
-}
-
-@media screen and (max-width: 767px) {
-    .navbar .navbar-collapse .navbar-right > li:last-child {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-    .navbar .nav-collapse {
-        margin: 7.5px auto;
-        padding: 0;
-    }
-    .navbar .nav-collapse .navbar-form {
-        margin: 0;
-    }
-    .nav-collapse>li {
-        float: none;
-    }
-}
-
-nav.navbar.navbar-default {
-    background: #6389a8;
-    border-color: #6389a8;
-    margin-bottom: 0px
-}
-
-.navbar-default .navbar-nav>li>a {
-    color: #fff;
-}
-
-.chat {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.chat li {
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-    border-bottom: 1px dotted #B3A9A9;
-}
-
-.chat li.right .chat-body {
-    margin-right: 60px;
-}
-
-.chat li .chat-body p {
+header nav {
+  height: 70px;
   margin: 0;
-  // color: #777777;
+  padding-top: 10px;
 }
 
-.panel-primary>.panel-heading {
-  color: #fff;
-  background-color: #fff;
-  border-color: #fff;
+/*  CLASSES  ************************************/
+
+.container {
+  margin-top: 1em;
 }
 
-.navbar-nav>li::before {
-  content: '|';
-  position: absolute;
-  color: #fff;
-  top: 16px;
-}
-
-.navbar-nav>li:first-child::before {
-  content: '';
-}
-
-.panel .slidedown .glyphicon, .chat .glyphicon {
-  margin-right: 5px;
-}
-
-#imgLogo,
-#txtInput,
-#userName,
-#btnClear,
-#btnTheme {
-  height: 50px;
-  width: 100%;
-}
-
-nav div div.col-md-1,
-nav div div.col-md-2 {
-  padding-left: .25em;
-  padding-right: .25em;
-}
-
-.checkBoxs { 
-  display: inline-block;
-}
-
-#messages {
-  height: 450px;
-  overflow-y: auto;
+.chat-img {
+  padding-right: 1em;
+  padding-left: 1em;
 }
 
 .embiggin {
@@ -154,53 +46,45 @@ nav div div.col-md-2 {
   font-size: 1.25em;
 }
 
-// .emdarkin {
-//   background: #222;
-//   color: #ddd;
-// }
+/*  IDs  ****************************************/
 
-// .emdarkin p {
-//   color: #ddd;
-// }
+#imgLogo,
+#txtInput,
+#userName,
+#btnClear,
+#btnTheme {
+  height: 50px;
+  width: 100%;
+  vertical-align: middle;
+}
 
-body {
-  height:90vh;
-  background-image: url('http://s3.amazonaws.com/spoonflower/public/design_thumbnails/0076/0696/rrammend_8_inch_mirror.png');
-  background-size: 200%;
-  background-repeat: no-repeat;
-  background-color: rgba(0,0,0,.8);
-  background-blend-mode: difference;
-  // background center;
+#brandie {
+  padding: 0 1em;
+}
+
+#messages {
+  background: rgba(250,250,255,.9);
+  height: 79vh;
+  overflow-y: auto;
+  margin-top: 75px;
+  box-shadow: 0 3px 6px rgba(50,40,50,.8);
 }
 
 #navMain{
-  height: 20%;
+  height: 10vh;
+  width: 100%;
+  padding: 0;
   margin: 0;
-  // text-align: center;
-  // position: fixed;
-  // top: 0;
+  position: fixed;
+  top: 0;
 }
 
 #footerMain{
   width: 100%;
-  height: 6vh;
+  height: 5vh;
   margin: 0;
   text-align: center;
-  // position: fixed;
-  // bottom: 0;
-}
-
-#divMain {
-  height: 100%;
-  border: 3px inset rgba(50,50,50,.8);
-  box-shadow: 0 5px 10px rgba(50,40,50,.9);
-}
-
-.container {
-  margin-top: 1em;
-}
-
-.chat-img {
-  padding-right: 1em;
-  padding-left: 1em;
+  position: fixed;
+  bottom: 0;
+  font-weight: bolder;
 }
