@@ -1,99 +1,79 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Chatty!</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="css/styles.css"></link>
-
-
+  <title>Chatty!</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="css/styles.css"></link>
 </head>
 <body>
 
 <!-- Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">Change Theme</h4>
-	      </div>
-	      <div class="modal-body container">
-	        <div class="row">
-	        	<div class="col-md-3">
-	        		<label for="bgPicker">Background Color</label>
-	        		<input type="color" id="bgPicker" value="#ffffff">
-	        	</div>
-	        	<div class="col-md-3">
-	        		<label for="txtPicker">Text Color</label>
-	        		<input type="color" id="txtPicker" value="#000000">
-	        	</div>
-	        </div>
-	      </div>
-	      <div class="modal-footer">
-	      	<button type="button" class="btn btn-default pull-left" id="btnLargeText">EmBiggen!</button>
-	        <button type="button" class="btn btn-default" data-dismiss="modal" id="btnCancel">Cancel</button>
-	        <button type="button" class="btn btn-primary" id="btnColor">Save changes</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-	
-	<div class="container">
-		<div class="row">
-	    <div class="col-md-12">
-        <div class="panel panel-default" id="divMain">
-
-          <nav class="panel-heading" id="navMain">
-            <div class="input-group col-md-12">
-
-              <div class="col-md-2">
-								<img id="imgLogo" src="img/chattyLogo.png">
-							</div>
-
-							<div class="col-md-6">                           
-                <input id="txtInput" type="text" class="form-control" placeholder="Type your message here..." vk_18c1e="subscribed" style="direction: rtl;" />
-              </div>
-
-              <div class="col-md-2">
-              	<input id="userName" type="text" class="form-control" placeholder="User Name" style="direction: rtl;">
-              </div>
-
-              <div class="col-md-1">
-								<button class="btn btn-default" id="btnClear" type="button">Clear!</button>
-              </div>
-              <div class="col-md-1">
-              	<button type="button" id="btnTheme" class="btn btn-default" data-toggle="modal" data-target="#myModal">Theme!</button>
-              </div>
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Change Theme</h4>
+        </div>
+        <div class="modal-body container">
+          <div class="row">
+            <div class="col-md-3">
+              <label for="bgPicker">Background Color</label>
+              <input type="color" id="bgPicker" value="#ffffff">
             </div>
-
-<!--        <div class="checkBoxs col-md-offset-4">
-          		<input id="checkTheme" type="checkbox" name="darkTheme" value="None">
-          		<label for="checkTheme">Dark Theme</label>
-            </div>
-            <div class="checkBoxs col-md-offset-2">
-              <input id="checkLargeText" type="checkbox" name="largeText" value="None">
-              <label for="checkLargeText">Large Text</label>
-            </div> -->
-          
-          </nav>
-          <div id="messages">
-            <div class="panel-body">
-              <ul class="chat" id="ulMessages">
-                      
-              </ul>
+            <div class="col-md-3">
+              <label for="txtPicker">Text Color</label>
+              <input type="color" id="txtPicker" value="#000000">
             </div>
           </div>
-					<footer class="panel-footer" id="footerMain">
-						&copy; gitHeadz 2016.
-					</footer>
-
         </div>
-	    </div>
-		</div>
-	</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" id="btnLargeText">EmBiggen!</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="btnCancel">Cancel</button>
+          <button type="button" class="btn btn-primary" id="btnColor">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <header class="container-fluid" id="navMain">
+    <nav class="navbar navbar-default">
+      <div>
+        <a class="navbar-brand col-xs-2" href="#" id="brandie">
+          <img id="imgLogo" src="img/chattyLogo.png" alt="Chatty Logo">
+        </a>
+      </div>
+      <div class="col-xs-6">
+        <input id="txtInput" type="text" class="form-control" placeholder="Type your message here...">
+      </div>
+      <div class="col-xs-2">
+        <input id="userName" type="text" class="form-control" placeholder="User Name">
+      </div>
+      <div class="col-xs-1">
+        <button class="btn btn-default" id="btnClear" type="button">Clear!</button>
+      </div>
+      <div class="col-xs-1">
+        <button type="button" id="btnTheme" class="btn btn-default" data-toggle="modal" data-target="#myModal">Theme!</button>
+      </div>
+    </nav><!-- End of .row .panel .panel-heading NAV -->
+  </header><!-- End of .container-fluid NAV -->
+  
+  <main class="container" id="divMain">
+    <div class="row">
+      <div class="col-xs-12 panel panel-default panel-body" id="messages">
+        <ul class="chat" id="ulMessages">
+                
+        </ul>
+      </div>
+    </div>
+  </main>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <footer class="container-fluid panel-footer" id="footerMain">
+    &copy; gitHeadz 2016.
+  </footer>
+
 	<script type="text/javascript" src="javascripts/JSONHandler.js"></script>
 	<script type="text/javascript" src="javascripts/readerWriter.js"></script>
 	<script type="text/javascript" src="javascripts/deleter.js"></script>
