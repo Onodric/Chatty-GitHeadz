@@ -3,10 +3,9 @@ var Cathy = (function (oldCathy) {
 
   oldCathy.removeMsg = function(myElement){
     Cathy.removeMsgArray(parseInt(myElement.id));
-    ulMessages.removeChild(myElement);
+    myElement.remove();
 
-    var tempArray = ulMessages.getElementsByTagName("li");
-
+    var tempArray = $('#ulMessages li');
     for (let i = parseInt(myElement.id); i < tempArray.length; i++){
       tempArray[i].setAttribute("id", i);
     }

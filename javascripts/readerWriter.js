@@ -11,13 +11,11 @@ var Cathy = (function (oldCathy) {
   };
   
   oldCathy.writeMsgDOM = function(elementID, msgObject, idCounter){
-
-    let msgHTML = '';
-
     let userName = msgObject.user.split(" ");
     let initials = '';
     let firstName = userName[0];
     let lastName = userName[userName.length - 1];
+
     if (firstName === lastName){
       initials = firstName.toUpperCase().slice(0, 1);
     } else {
@@ -26,7 +24,7 @@ var Cathy = (function (oldCathy) {
       initials = (firstName + lastName).toUpperCase();
     }
 
-// Indented to improve readibility
+// Indented to improve readability
 
     let $newMsg = $("<li>", {
       id: idCounter,
@@ -83,10 +81,10 @@ var Cathy = (function (oldCathy) {
     $btnClear.removeAttr('disabled');
 
     if (idCounter === 19) {
-      Cathy.removeMsg(elementID.firstElementChild);
+console.log("im sending to delete: ", elementID.children(':first-child'));
+      Cathy.removeMsg(elementID.children(':first-child'));
     }
-
-    $("#counter").html('Number of Messages: ' + (idCounter + 1));
+    $("#counter").html('Number of Messages: ' + (Cathy.getMsgArray().length));
   };
 
   oldCathy.removeMsgArray = function(index){

@@ -70,6 +70,7 @@ header nav {
   margin: 0;
   text-align: center;
   position: fixed;
-  bottom: 0; }
+  bottom: 0;
+  font-weight: bolder; }
 
 /*# sourceMappingURL=styles.css.map */

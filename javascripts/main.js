@@ -1,95 +1,95 @@
 "use strict";
 
-var ulMessages = document.getElementById("ulMessages");
-var txtInput = document.getElementById("txtInput");
-var $btnClear = $("#btnClear");
-var btnLargeText = document.getElementById("btnLargeText");
-var btnColor = document.getElementById("btnColor");
-var bgPicker = document.getElementById("bgPicker");
-var txtPicker = document.getElementById("txtPicker");
-var footerMain = document.getElementById("footerMain");
-var editToggle = false;
-var editMessage;
+const $ulMessages = $("#ulMessages");
+const $txtInput = $("#txtInput");
+const $btnClear = $("#btnClear");
+const $btnLargeText = $("#btnLargeText");
+const $btnColor = $("#btnColor");
+const $bgPicker = $("#bgPicker");
+const $txtPicker = $("#txtPicker");
+const $footerMain = $("#footerMain");
+const $userName = $("#userName");
+let $editMessage;
+let editToggle = false;
 
 function initMsg(arrayOfMsgs){
   for(let i = 0; i < arrayOfMsgs.length; i++){
     Cathy.writeMsgArray(arrayOfMsgs[i]);
-    Cathy.writeMsgDOM(ulMessages, arrayOfMsgs[i], (Cathy.getMsgArray().length - 1));
+    Cathy.writeMsgDOM($ulMessages, arrayOfMsgs[i], (Cathy.getMsgArray().length - 1));
   }
+  $('.btnDelete').click(function(){
+    if ($(this).html() === 'Delete'){
+      Cathy.removeMsg($(this).closest('li'));
+      $("#counter").html('Number of Messages: ' + Cathy.getMsgArray().length);
+    } 
+  });  
+
+  $('.btnEdit').click(function () {
+    if ($(this).html() === "Edit"){
+      editToggle = true;
+      $txtInput.focus();
+      $txtInput.val('');
+      $editMessage = $(this).closest('li').children('msgFinder');
+      //editMessage = event.target.parentElement.nextElementSibling.nextElementSibling.firstElementChild.nextElementSibling;
+    }
+  });
 }
 
-ulMessages.addEventListener("click", function(){
-  if (event.target.innerHTML == 'Delete'){
-    var msgElement = event.target.parentElement.parentElement;
-    Cathy.removeMsg(msgElement);
-    footerMain.innerHTML = '<span class="pull-left">&copy; gitHeadz 2016.</span><span class="pull-right">Number of Messages: ' + Cathy.getMsgArray().length + '</span>';
-  } else if (event.target.innerHTML == "Edit"){
-    editToggle = true;
-    txtInput.focus();
-    txtInput.value = '';
-    editMessage = event.target.parentElement.nextElementSibling.nextElementSibling.firstElementChild.nextElementSibling;
-  }
-});
-
-txtInput.addEventListener("keyup", function(){
+function writeMsgNow(event){
   if (!editToggle){
     if (event.which === 13){
-      if(txtInput.value === ''){
+      if($txtInput.val() === ''){
         alert("Type Something....");
       } else {
-      var indexNum = Cathy.getMsgArray().length;
-      var dateNow = new Date(Date.now());
-      var userName = document.getElementById("userName").value;
-      if(userName === ''){userName = 'Guest';}
-      var msgObject = { "user": userName, "timestamp": dateNow, "message": txtInput.value};
-      Cathy.writeMsgDOM(ulMessages, msgObject, indexNum);
-      Cathy.writeMsgArray(msgObject);
-      txtInput.value = '';
+      let indexNum = Cathy.getMsgArray().length;
+      let $user = $userName.val();
+      if($user === ''){$user = 'Guest';}
+      let $msgObject = $({
+        "user": $user,
+        "timestamp": new Date(Date.now()),
+        "message": $txtInput.val()});
+      Cathy.writeMsgArray($msgObject[0]);
+      Cathy.writeMsgDOM($ulMessages, $msgObject[0], indexNum);
+      $txtInput.val('');
       }
     }
   } else {
     if (event.which === 13){
-      if(txtInput.value === ''){
+      if($txtInput.val() === ''){
         alert("Type Something....");
       } else {
-        editMessage.innerHTML = txtInput.value;
+        $editMessage.html($txtInput.val());
         editToggle = false;
-        txtInput.value = '';
+        $txtInput.val('');
       }
     }
   }
+}
+
+$txtInput.keyup(function(event){
+  writeMsgNow(event);
 });
 
-btnClear.addEventListener("click", function () {
+$userName.keyup(function(event){
+  writeMsgNow(event);
+});
+
+$btnClear.click(function () {
   $btnClear.attr('disabled', 'true');
-  ulMessages.innerHTML = '';
-  footerMain.innerHTML = '<span class="pull-left">&copy; gitHeadz 2016.</span><span class="pull-right">No Messages</span>';
+  $ulMessages.html('');
+  $footerMain.html('<span class="pull-left">&copy; gitHeadz 2016.</span><span class="pull-right" id="counter">No Messages</span>');
   Cathy.clearMsgArray();
 });
 
-btnLargeText.addEventListener("click", function(){
-  document.getElementsByTagName("body")[0].classList.toggle("embiggin");
-  document.getElementsByTagName("input")[0].classList.toggle("btn-embiggin");
+$btnLargeText.click(function(){
+  $("body").toggleClass("embiggin");
+  $("input").toggleClass("btn-embiggin");
 });
 
-btnColor.addEventListener("click", function(){
-  document.getElementById("myModal").firstElementChild.firstElementChild.style.color=txtPicker.value;
-  document.getElementById("myModal").firstElementChild.firstElementChild.style.background=bgPicker.value;
-  document.getElementsByTagName("body")[0].style.backgroundColor=txtPicker.value;
-  document.getElementById("messages").style.color=txtPicker.value;
-  document.getElementById("messages").style.background=bgPicker.value;
-  document.getElementById("ulMessages").parentElement.style.color=txtPicker.value;
-  document.getElementById("ulMessages").parentElement.style.background=bgPicker.value;
-  var tempBtns = document.getElementsByTagName("button");
-  for (let i = 6; i < tempBtns.length; i++){
-    tempBtns[i].style.color=txtPicker.value;
-    tempBtns[i].style.background=bgPicker.value;
-  }
-  var tempLis = document.getElementsByTagName("li");
-  for(let i = 0; i < tempLis.length; i++){
-    document.getElementsByTagName("li")[i].style.color=txtPicker.value;
-    document.getElementsByTagName("li")[i].style.background=bgPicker.value;
-  }
+$btnColor.click(function(){
+  $("#myModal .modal-content, #messages, #ulmessages, button, li").attr({style: "color: " + $('#txtPicker').val() + "; background: " + $('#bgPicker').val()});
+  $("#navMain, #footerMain").attr({style: "color: " + $('#bgPicker').val() + "; background: " + $('#txtPicker').val()});
+  $("body").attr({style: "background-color: " + $('#txtPicker').val()});
 });
 
 $.each(["data/message1.json", "data/message2.json", "data/message3.json", "data/message4.json", "data/message5.json"], function (index, value) {
