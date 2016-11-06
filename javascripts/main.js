@@ -2,7 +2,7 @@
 
 var ulMessages = document.getElementById("ulMessages");
 var txtInput = document.getElementById("txtInput");
-var btnClear = document.getElementById("btnClear");
+var $btnClear = $("#btnClear");
 var btnLargeText = document.getElementById("btnLargeText");
 var btnColor = document.getElementById("btnColor");
 var bgPicker = document.getElementById("bgPicker");
@@ -14,7 +14,7 @@ var editMessage;
 function initMsg(arrayOfMsgs){
   for(let i = 0; i < arrayOfMsgs.length; i++){
     Cathy.writeMsgArray(arrayOfMsgs[i]);
-    Cathy.writeMsgDOM(ulMessages, arrayOfMsgs[i], i);
+    Cathy.writeMsgDOM(ulMessages, arrayOfMsgs[i], (Cathy.getMsgArray().length - 1));
   }
 }
 
@@ -61,7 +61,7 @@ txtInput.addEventListener("keyup", function(){
 });
 
 btnClear.addEventListener("click", function () {
-  btnClear.disabled = true;
+  $btnClear.attr('disabled', 'true');
   ulMessages.innerHTML = '';
   footerMain.innerHTML = '<span class="pull-left">&copy; gitHeadz 2016.</span><span class="pull-right">No Messages</span>';
   Cathy.clearMsgArray();
@@ -70,18 +70,12 @@ btnClear.addEventListener("click", function () {
 btnLargeText.addEventListener("click", function(){
   document.getElementsByTagName("body")[0].classList.toggle("embiggin");
   document.getElementsByTagName("input")[0].classList.toggle("btn-embiggin");
-  // var tempBtns = document.getElementsByTagName("button");
-  // for (let i = 0; i < tempBtns.length; i++){
-  //   tempBtns[i].classList.toggle("btn-embiggin");
-  // }
 });
 
 btnColor.addEventListener("click", function(){
   document.getElementById("myModal").firstElementChild.firstElementChild.style.color=txtPicker.value;
   document.getElementById("myModal").firstElementChild.firstElementChild.style.background=bgPicker.value;
   document.getElementsByTagName("body")[0].style.backgroundColor=txtPicker.value;
-  // document.getElementsByTagName("body")[0].style.backgroundColor=bgPicker.value;
-  // document.getElementsByTagName("body")[0].setAttribute(backgroundColor, bgPicker.value);
   document.getElementById("messages").style.color=txtPicker.value;
   document.getElementById("messages").style.background=bgPicker.value;
   document.getElementById("ulMessages").parentElement.style.color=txtPicker.value;
@@ -98,4 +92,7 @@ btnColor.addEventListener("click", function(){
   }
 });
 
-Cathy.loadMessages(initMsg);
+$.each(["data/message1.json", "data/message2.json", "data/message3.json", "data/message4.json", "data/message5.json"], function (index, value) {
+  Cathy.loadMessage(value, initMsg);
+});
+

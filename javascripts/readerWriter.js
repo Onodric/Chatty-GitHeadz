@@ -1,6 +1,6 @@
 "use strict";
 var Cathy = (function (oldCathy) {
-  var msgArray = [];
+  let msgArray = [];
 
   oldCathy.getMsgArray = function(){
     return msgArray;
@@ -12,43 +12,91 @@ var Cathy = (function (oldCathy) {
   
   oldCathy.writeMsgDOM = function(elementID, msgObject, idCounter){
 
-    var msgHTML = '';
-    var userName = msgObject.user.split(" ");
-    var firstName = userName[0];
-    var lastName = userName[userName.length - 1];
+    let msgHTML = '';
 
-    firstName = firstName.slice(0, 1);
-    lastName = lastName.slice(0, 1);
-    var initials = (firstName + lastName).toUpperCase();
+    let userName = msgObject.user.split(" ");
+    let initials = '';
+    let firstName = userName[0];
+    let lastName = userName[userName.length - 1];
+    if (firstName === lastName){
+      initials = firstName.toUpperCase().slice(0, 1);
+    } else {
+      firstName = firstName.slice(0, 1);
+      lastName = lastName.slice(0, 1);
+      initials = (firstName + lastName).toUpperCase();
+    }
 
-    msgHTML += '<li class="right clearfix" id="' + idCounter + '" style="color:' + txtPicker.value + '; background:' + bgPicker.value + '"><span class="chat-img pull-left"><img src="http://placehold.it/50/008844/fff&text=';
-    msgHTML += initials;
-    msgHTML += '" alt="User Avatar" class="img-circle"></span><span class="chat-img pull-right"><button class="btn btn-default btnEdit" type="button" style="color:' + txtPicker.value + '; background:' + bgPicker.value + '">Edit</button></span><span class="chat-img pull-right"><button class="btn btn-default btnDelete" type="button" style="color:' + txtPicker.value + '; background:' + bgPicker.value + '">Delete</button></span><div class="chat-body clearfix"><div class="header"><small><span class="glyphicon glyphicon-time"></span>';
-    msgHTML += msgObject.timestamp;
-    msgHTML += '</small><p class="pull-right primary-font">';
-    msgHTML += msgObject.user;
-    msgHTML += '</p></div><strong class="msgFinder">';
-    msgHTML += msgObject.message;
-    msgHTML += '</strong></div></li>';
-    elementID.innerHTML += msgHTML;
-    btnClear.disabled = false;
+// Indented to improve readibility
 
-    if (idCounter == 19) {
+    let $newMsg = $("<li>", {
+      id: idCounter,
+      class: "right clearfix",
+      style: "color: " + $('#txtPicker').val() + "; background: " + $('#bgPicker').val()
+    });
+    $newMsg.appendTo(elementID);
+      let $newAvatar = $("<span>", {
+        class: "chat-img pull-left"
+      });
+      $newAvatar.appendTo($newMsg);
+        let $newIcon = $("<img>", {
+          src: "http://placehold.it/50/008844/fff&text=" + initials,
+          alt: "User Initials Avatar",
+          class: "img-circle"
+        });
+        $newIcon.appendTo($newAvatar);
+      let $newEditSpan = $("<span>", {
+        class: "chat-img pull-right"
+      });
+      $newEditSpan.appendTo($newMsg);
+        let $newBtnEdit = $("<button>", {
+          class: 'btn btn-default btnEdit',
+          type: 'button',
+          style: "color: " + $('#txtPicker').val() + "; background: " + $('#bgPicker').val()      
+        });
+        $newBtnEdit.html("Edit");
+        $newBtnEdit.appendTo($newEditSpan);
+      let $newDeleSpan = $("<span>", {class: "chat-img pull-right"});
+      $newDeleSpan.appendTo($newMsg);
+        let $newBtnDele = $("<button>", {
+          class: 'btn btn-default btnDelete',
+          type: 'button',
+          style: "color: " + $('#txtPicker').val() + "; background: " + $('#bgPicker').val()      
+        });
+        $newBtnDele.html("Delete");
+        $newBtnDele.appendTo($newDeleSpan);
+      let $newMsgBlock = $("<div>", {class: "chat-body clearfix"});
+      $newMsgBlock.appendTo($newMsg);
+        let $newBlockHeader = $("<div>", {class: "header"});
+        $newBlockHeader.appendTo($newMsgBlock);
+          let $newSmallTime = $("<small>");
+          $newSmallTime.appendTo($newBlockHeader);
+            let $newTimeIcon = $("<span>", {class: "glyphicon glyphicon-time"});
+            $newTimeIcon.appendTo($newSmallTime);
+          $newSmallTime.append(msgObject.timestamp);
+        let $newUser = $("<p>", {class: "pull-right primary-font"});
+        $newUser.html(msgObject.user);
+        $newUser.appendTo($newBlockHeader);
+      let $newMsgTxt = $("<strong>", {class: "msgFinder"});
+      $newMsgTxt.html(msgObject.message);
+      $newMsgTxt.appendTo($newMsgBlock);
+
+    $btnClear.removeAttr('disabled');
+
+    if (idCounter === 19) {
       Cathy.removeMsg(elementID.firstElementChild);
     }
 
-    footerMain.innerHTML = '<span class="pull-left">&copy; gitHeadz 2016.</span><span class="pull-right">Number of Messages: ' + (idCounter + 1) + '</span>';
+    $("#counter").html('Number of Messages: ' + (idCounter + 1));
   };
 
   oldCathy.removeMsgArray = function(index){
-    var tempArray1 = msgArray.slice(0, index);
-    var tempArray2 = msgArray.slice(index + 1);
-    msgArray = tempArray1.concat(tempArray2);
+    msgArray.splice(index, 1);
   };
 
   oldCathy.clearMsgArray = function(){
     msgArray = [];
   };
+
   return oldCathy;
 
 })(Cathy || {});
